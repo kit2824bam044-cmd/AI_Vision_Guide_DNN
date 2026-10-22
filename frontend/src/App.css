@@ -1,0 +1,330 @@
+
+* {
+  box-sizing: border-box;
+}
+
+:root {
+  font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  color: #1f2937;
+  background: #f7f8fa;
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+}
+
+body {
+  margin: 0;
+  min-width: 320px;
+  background: #f7f8fa;
+}
+
+button,
+input,
+select {
+  font: inherit;
+}
+
+button {
+  cursor: pointer;
+}
+
+.app {
+  min-height: 100vh;
+}
+
+/* Header */
+
+header {
+  background: #ffffff;
+  border-bottom: 1px solid #e5e7eb;
+  padding: 22px 7%;
+}
+
+header h1 {
+  margin: 0;
+  font-size: 26px;
+  font-weight: 700;
+  letter-spacing: -0.4px;
+  color: #111827;
+}
+
+header p {
+  margin: 6px 0 0;
+  font-size: 14px;
+  color: #6b7280;
+}
+
+/* Main layout */
+
+main {
+  width: min(1180px, 92%);
+  margin: 28px auto 50px;
+  display: grid;
+  grid-template-columns: minmax(0, 1.35fr) minmax(340px, 0.65fr);
+  gap: 22px;
+  align-items: start;
+}
+
+.card {
+  background: #ffffff;
+  border: 1px solid #e5e7eb;
+  border-radius: 14px;
+  padding: 20px;
+  box-shadow: 0 4px 18px rgba(17, 24, 39, 0.05);
+}
+
+.card h2 {
+  margin: 0 0 16px;
+  font-size: 18px;
+  font-weight: 650;
+  color: #111827;
+}
+
+/* Camera */
+
+.camera-container {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 16 / 10;
+  overflow: hidden;
+  border-radius: 10px;
+  background: #111827;
+  border: 1px solid #d1d5db;
+}
+
+.camera-container video {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.camera-off {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  color: #9ca3af;
+  background: #f3f4f6;
+}
+
+.camera-off div {
+  font-size: 42px;
+  margin-bottom: 8px;
+}
+
+.camera-off p {
+  margin: 0;
+  font-size: 14px;
+}
+
+/* Detection boxes */
+
+.bounding-box {
+  position: absolute;
+  border: 2px solid #22c55e;
+  pointer-events: none;
+}
+
+.box-label {
+  position: absolute;
+  top: -27px;
+  left: -2px;
+  white-space: nowrap;
+  padding: 4px 7px;
+  border-radius: 4px;
+  background: #22c55e;
+  color: #ffffff;
+  font-size: 12px;
+  font-weight: 650;
+}
+
+/* Buttons */
+
+button {
+  width: 100%;
+  margin-top: 12px;
+  padding: 11px 14px;
+  border: 1px solid #d1d5db;
+  border-radius: 8px;
+  background: #ffffff;
+  color: #111827;
+  font-weight: 600;
+  transition: background 0.15s ease, border-color 0.15s ease, transform 0.15s ease;
+}
+
+button:hover {
+  background: #f3f4f6;
+  border-color: #9ca3af;
+}
+
+button:active {
+  transform: translateY(1px);
+}
+
+button.stop {
+  background: #fff7f7;
+  border-color: #fecaca;
+  color: #b91c1c;
+}
+
+button.stop:hover {
+  background: #fef2f2;
+}
+
+/* Status */
+
+.card > p {
+  color: #6b7280;
+  font-size: 13px;
+  line-height: 1.5;
+}
+
+.card > p:first-of-type {
+  margin-top: 12px;
+}
+
+/* Forms */
+
+label {
+  display: block;
+  margin: 0 0 7px;
+  font-size: 13px;
+  font-weight: 600;
+  color: #374151;
+}
+
+select,
+input {
+  width: 100%;
+  padding: 11px 12px;
+  border: 1px solid #d1d5db;
+  border-radius: 8px;
+  outline: none;
+  background: #ffffff;
+  color: #111827;
+}
+
+select:focus,
+input:focus {
+  border-color: #9ca3af;
+  box-shadow: 0 0 0 3px rgba(156, 163, 175, 0.16);
+}
+
+input {
+  margin-top: 16px;
+}
+
+/* Navigation */
+
+.route-info {
+  margin-top: 16px;
+  padding: 14px;
+  border: 1px solid #e5e7eb;
+  border-radius: 9px;
+  background: #fafafa;
+}
+
+.route-info strong {
+  display: block;
+  margin-bottom: 6px;
+  font-size: 14px;
+  color: #374151;
+}
+
+.route-info p {
+  margin: 5px 0;
+  font-size: 13px;
+  line-height: 1.55;
+  color: #6b7280;
+}
+
+hr {
+  border: 0;
+  border-top: 1px solid #e5e7eb;
+  margin: 24px 0;
+}
+
+/* Detected objects */
+
+.object {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 15px;
+  padding: 12px 0;
+  border-bottom: 1px solid #f0f1f3;
+}
+
+.object:last-of-type {
+  border-bottom: 0;
+}
+
+.object strong {
+  font-size: 14px;
+  color: #111827;
+}
+
+.object p {
+  display: inline-block;
+  margin: 5px 14px 0 0;
+  font-size: 12px;
+  color: #6b7280;
+}
+
+.object > span {
+  flex: 0 0 auto;
+  min-width: 45px;
+  text-align: right;
+  font-size: 13px;
+  font-weight: 650;
+  color: #374151;
+}
+
+/* Desktop: camera card stays on the left */
+
+main > .card:first-child {
+  grid-row: span 1;
+}
+
+/* Responsive */
+
+@media (max-width: 850px) {
+  header {
+    padding: 18px 5%;
+  }
+
+  header h1 {
+    font-size: 22px;
+  }
+
+  main {
+    width: 94%;
+    grid-template-columns: 1fr;
+    margin-top: 20px;
+  }
+
+  .card {
+    padding: 16px;
+  }
+}
+
+@media (max-width: 480px) {
+  header h1 {
+    font-size: 20px;
+  }
+
+  header p {
+    font-size: 13px;
+  }
+
+  .camera-container {
+    aspect-ratio: 4 / 3;
+  }
+
+  .object p {
+    display: block;
+    margin-right: 0;
+  }
+}
